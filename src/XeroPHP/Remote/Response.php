@@ -10,6 +10,7 @@ use XeroPHP\Remote\Exception\NotAvailableException;
 use XeroPHP\Remote\Exception\NotFoundException;
 use XeroPHP\Remote\Exception\NotImplementedException;
 use XeroPHP\Remote\Exception\OrganisationOfflineException;
+use XeroPHP\Remote\Exception\PayrollHasNotBeenProvisioned;
 use XeroPHP\Remote\Exception\RateLimitExceededException;
 use XeroPHP\Remote\Exception\UnauthorizedException;
 
@@ -88,6 +89,12 @@ class Response
                 throw new UnauthorizedException();
 
             case Response::STATUS_NOT_FOUND:
+                // xero api returns this error as 404 :)
+                $response = urldecode($this->response_body);
+                if(false !== stripos($response, 'Payroll has not been provisioned')) {
+                    throw new PayrollHasNotBeenProvisioned();
+                }
+
                 throw new NotFoundException();
 
             case Response::STATUS_INTERNAL_ERROR:
