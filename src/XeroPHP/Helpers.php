@@ -82,7 +82,8 @@ class Helpers
             if ($child_name === $singular_node_name ||
                 //Handle exceptions where parent node and child node have different names
                 ($singular_node_name === 'Tracking' && $child_name === TrackingCategory::getRootNodeName()) ||
-                ($singular_node_name === 'LeaveEarningsLine' && $child_name === 'EarningsLine')
+                ($singular_node_name === 'LeaveEarningsLine' && $child_name === 'EarningsLine') ||
+                ($singular_node_name === 'TimesheetEarningsLine' && $child_name === 'EarningsLine')
             ) {
                 $output[] = $node;
             } else {

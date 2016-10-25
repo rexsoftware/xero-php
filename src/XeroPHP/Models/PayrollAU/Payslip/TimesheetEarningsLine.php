@@ -24,6 +24,12 @@ class TimesheetEarningsLine extends Remote\Model
      * @property float Amount
      */
 
+    /**
+     * Earnings rate number of units.
+     *
+     * @property float[] NumberOfUnits
+     */
+
 
 
     /**
@@ -92,10 +98,11 @@ class TimesheetEarningsLine extends Remote\Model
      */
     public static function getProperties()
     {
+
         return [
-            'EarningsRateID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'RatePerUnit' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
-            'Amount' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false]
+            'EarningsRateID' => [ false, self::PROPERTY_TYPE_STRING, null, false, false ],
+            'RatePerUnit' => [ false, self::PROPERTY_TYPE_FLOAT, null, false, false ],
+            'NumberOfUnits' => [ false, self::PROPERTY_TYPE_FLOAT, null, false, false ],
         ];
     }
 
@@ -143,21 +150,25 @@ class TimesheetEarningsLine extends Remote\Model
     }
 
     /**
-     * @return float
+     * @return float[]|Remote\Collection
+     * Always returns a collection, switch is for type hinting
      */
-    public function getAmount()
+    public function getNumberOfUnits()
     {
-        return $this->_data['Amount'];
+        return $this->_data['NumberOfUnits'];
     }
 
     /**
      * @param float $value
-     * @return TimesheetEarningsLine
+     * @return EarningsLine
      */
-    public function setAmount($value)
+    public function addNumberOfUnit($value)
     {
-        $this->propertyUpdated('Amount', $value);
-        $this->_data['Amount'] = $value;
+        $this->propertyUpdated('NumberOfUnits', $value);
+        if(!isset($this->_data['NumberOfUnits'])){
+            $this->_data['NumberOfUnits'] = new Remote\Collection();
+        }
+        $this->_data['NumberOfUnits'][] = $value;
         return $this;
     }
 
