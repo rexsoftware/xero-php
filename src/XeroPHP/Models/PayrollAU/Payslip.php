@@ -134,6 +134,12 @@ class Payslip extends Remote\Model
      * @property LeaveEarningsLine[] LeaveEarningsLines
      */
 
+    /**
+     * PayRun ID
+     *
+     * @property string PayRunID
+     */
+
 
 
     /**
@@ -207,6 +213,7 @@ class Payslip extends Remote\Model
         return [
             'EmployeeID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'PayslipID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'PayRunID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'EarningsLines' => [false, self::PROPERTY_TYPE_OBJECT, 'PayrollAU\\Payslip\\EarningsLine', true, false],
             'TimesheetEarningsLines' => [false, self::PROPERTY_TYPE_OBJECT, 'PayrollAU\\Payslip\\TimesheetEarningsLine', true, false],
             'DeductionLines' => [false, self::PROPERTY_TYPE_OBJECT, 'PayrollAU\\Payslip\\DeductionLine', true, false],
@@ -532,6 +539,17 @@ class Payslip extends Remote\Model
     public function getLeaveEarningsLines()
     {
         return $this->_data['LeaveEarningsLines'];
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setPayRunID($value)
+    {
+        $this->propertyUpdated('PayRunID', $value);
+        $this->_data['PayRunID'] = $value;
+        return $this;
     }
 
 
