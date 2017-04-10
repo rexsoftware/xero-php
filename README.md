@@ -1,6 +1,4 @@
-XeroPHP
--------
-## Forked from calcinai/xero-php
+# XeroPHP: Forked from calcinai/xero-php
 Has temporarily diverged from `calcinai/xero-php`. When pull requests are added
  to original repo, this repo will be destroyed.
 
