@@ -1,5 +1,10 @@
 XeroPHP
------------------------
+-------
+## Forked from calcinai/xero-php
+Has temporarily diverged from `calcinai/xero-php`. When pull requests are added
+ to original repo, this repo will be destroyed.
+
+-------
 
 [![Build Status](https://travis-ci.org/calcinai/xero-php.svg?branch=master)](https://travis-ci.org/calcinai/xero-php)
 [![Latest Stable Version](https://poser.pugx.org/calcinai/xero-php/v/stable)](https://packagist.org/packages/calcinai/xero-php)
