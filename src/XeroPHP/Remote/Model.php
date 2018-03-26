@@ -253,7 +253,7 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
      */
     public static function castToString($type, $value)
     {
-        if ($value === '') {
+        if ($value === '' || $value === null) {
             return '';
         }
 
@@ -296,6 +296,11 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
      */
     public static function castFromString($type, $value, $php_type)
     {
+        //Return null falsey values as null
+        if (!$value) {
+            return null;
+        }
+
         //Here should maybe handle locale specific tz overrides in the future.
         $timezone = null;
 
